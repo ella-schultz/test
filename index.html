@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NFFE Local 1650 | Los Padres National Forest</title>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="/_sdk/element_sdk.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --forest-green: #1E2C73;
+            --forest-dark: #121C54;
+            --gold-accent: #c9a227;
+            --gold-light: #e8d48b;
+            --white: #ffffff;
+            --off-white: #f8f9fa;
+            --gray-light: #e9ecef;
+            --gray-text: #495057;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        html {
+            height: 100%;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            height: 100%;
+            font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--gray-text);
+            background-color: var(--white);
+        }
+
+        .main-wrapper {
+            width: 100%;
+            height: 100%;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--forest-dark) 0%, var(--forest-green) 100%);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-image {
+   	 height: 50px;
+   	 width: auto;
+   	 display: block;
+        }
+
+        .logo-text h1 {
+            font-family: 'Merriweather', Georgia, serif;
+            font-size: 1.4rem;
+            color: var(--white);
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .logo-text p {
+            font-size: 0.85rem;
+            color: var(--gold-light);
+            font-weight: 600;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+            padding: 5px 0;
+            border-bottom: 2px solid transparent;
+        }
+
+        nav a:hover {
+            color: var(--gold-accent);
+            border-bottom-color: var(--gold-accent);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(160deg, var(--forest-dark) 0%, var(--forest-green) 50%, #121C54 100%);
+            padding: 80px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(201, 162, 39, 0.2);
+            border: 1px solid var(--gold-accent);
+            color: var(--gold-light);
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .hero h2 {
+            font-family: 'Merriweather', Georgia, serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: var(--white);
+            margin-bottom: 20px;
+            line-height: 1.3;
+            font-weight: 900;
+        }
+
+        .hero-subheadline {
+            font-size: clamp(1rem, 2.5vw, 1.25rem);
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 750px;
+            margin: 0 auto 40px;
+            line-height: 1.7;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 16px 32px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--gold-accent);
+            color: var(--forest-dark);
+            box-shadow: 0 4px 15px rgba(201, 162, 39, 0.4);
+        }
+
+        .btn-primary:hover {
+            background: var(--gold-light);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(201, 162, 39, 0.5);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .btn-secondary:hover {
+            background: var(--white);
+            color: var(--forest-dark);
+        }
+
+        /* Sections */
+        section {
+            padding: 70px 20px;
+        }
+
+        .section-container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-header h3 {
+            font-family: 'Merriweather', Georgia, serif;
+            font-size: clamp(1.75rem, 4vw, 2.25rem);
+            color: var(--forest-dark);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h3::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--gold-accent);
+            border-radius: 2px;
+        }
+
+        .section-alt {
+            background: var(--off-white);
+        }
+
+        /* About Section */
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            color: var(--gray-text);
+        }
+
+        .about-values {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .value-item {
+            text-align: center;
+        }
+
+        .value-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--forest-green), var(--forest-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 24px;
+        }
+
+        .value-item h4 {
+            font-family: 'Merriweather', Georgia, serif;
+            color: var(--forest-dark);
+            font-size: 1rem;
+        }
+
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--gold-accent);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .service-icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--forest-green), var(--forest-dark));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 20px;
+        }
+
+        .service-content h4 {
+            font-family: 'Merriweather', Georgia, serif;
+            color: var(--forest-dark);
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .service-content p {
+            font-size: 0.95rem;
+            color: var(--gray-text);
+            line-height: 1.6;
+        }
+
+        /* Resources Section */
+        .resources-intro {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            font-size: 1.05rem;
+            color: var(--gray-text);
+        }
+
+        .resources-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+        }
+
+        .resource-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            border: 2px solid transparent;
+        }
+
+        .resource-card:hover {
+            border-color: var(--gold-accent);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .resource-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--forest-green), var(--forest-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 28px;
+        }
+
+        .resource-card h4 {
+            font-family: 'Merriweather', Georgia, serif;
+            color: var(--forest-dark);
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .resource-card p {
+            font-size: 0.9rem;
+            color: var(--gray-text);
+        }
+
+        .resource-link {
+            display: inline-block;
+            margin-top: 15px;
+            color: var(--forest-green);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--forest-dark) 0%, var(--forest-green) 100%);
+            text-align: center;
+        }
+
+        .cta-section h3 {
+            font-family: 'Merriweather', Georgia, serif;
+            font-size: clamp(1.75rem, 4vw, 2.25rem);
+            color: var(--white);
+            margin-bottom: 20px;
+        }
+
+        .cta-section h3::after {
+            display: none;
+        }
+
+        .cta-description {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 35px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .cta-note {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-style: italic;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Stewards Section */
+        .stewards-intro {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            font-size: 1.05rem;
+            color: var(--gray-text);
+        }
+
+        .stewards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .steward-card {
+            background: var(--white);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            border-top: 4px solid var(--gold-accent);
+            transition: transform 0.3s ease;
+        }
+
+        .steward-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .steward-label {
+            display: inline-block;
+            background: var(--gold-accent);
+            color: var(--forest-dark);
+            padding: 4px 12px;
+            border-radius: 16px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .steward-card h4 {
+            font-family: 'Merriweather', Georgia, serif;
+            color: var(--forest-dark);
+            font-size: 1.15rem;
+            margin-bottom: 5px;
+        }
+
+        .steward-card .location {
+            color: var(--gold-accent);
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            color: var(--gray-text);
+        }
+
+        .contact-item a {
+            color: var(--forest-green);
+            text-decoration: none;
+        }
+
+        .contact-item a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--forest-dark);
+            color: var(--white);
+            padding: 50px 20px 30px;
+        }
+
+        .footer-container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .footer-main {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand h3 {
+            font-family: 'Merriweather', Georgia, serif;
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+            color: var(--white);
+        }
+
+        .footer-brand p {
+            color: var(--gold-light);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        .footer-brand .footer-desc {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .footer-section h4 {
+            font-family: 'Merriweather', Georgia, serif;
+            color: var(--gold-accent);
+            font-size: 1rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--gold-accent);
+        }
+
+        .footer-contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95rem;
+        }
+
+        .footer-contact-item a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+        }
+
+        .footer-contact-item a:hover {
+            color: var(--gold-accent);
+        }
+
+        .footer-divider {
+            height: 1px;
+            background: rgba(255, 255, 255, 0.1);
+            margin-bottom: 25px;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .footer-bottom p {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .footer-bottom a {
+            color: var(--gold-light);
+            text-decoration: none;
+        }
+
+        .footer-bottom a:hover {
+            text-decoration: underline;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .header-container {
+                justify-content: center;
+                text-align: center;
+            }
+
+            nav ul {
+                justify-content: center;
+            }
+
+            .hero {
+                padding: 60px 20px;
+            }
+
+            section {
+                padding: 50px 20px;
+            }
+
+            .about-values {
+                gap: 25px;
+            }
+
+            .services-grid,
+            .resources-grid,
+            .stewards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .footer-main {
+                text-align: center;
+            }
+
+            .footer-contact-item {
+                justify-content: center;
+            }
+
+            .footer-bottom {
+                justify-content: center;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-wrapper">
+        <!-- Header -->
+        <header>
+            <div class="header-container">
+                <div class="logo-section">
+                    <img src="NFFEEagle.png" alt="NFFE Logo" class="logo-image">
+                    <div class="logo-text">
+                        <h1>NFFE Local 1650</h1>
+                        <p>Los Padres National Forest</p>
+                    </div>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#resources">Resources</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#stewards">Stewards</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <span class="hero-badge">Federal Employee Representation</span>
+                <h2 id="hero-headline">Advocacy Across Every District. Accountability at Every Level.</h2>
+                <p class="hero-subheadline" id="hero-subheadline">Professional forest-level representation grounded in the Master Agreement, Forest Service directives, USDA regulations, and OPM policy.</p>
+                <div class="hero-buttons">
+                    <a href="https://calendar.app.google/bxukrgfCvzEjPfTP9" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Request Representation</a>
+                    <a href="https://forms.gle/YPdXpK2YFntYz1SA8" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Submit A Question</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about">
+            <div class="section-container">
+                <div class="section-header">
+                    <h3 id="about-title">Who We Represent</h3>
+                </div>
+                <div class="about-content">
+                    <p>NFFE Local 1650 provides professional, contract-based representation to bargaining unit employees across Los Padres National Forest.</p>
+                    <p>Our focus is forest-level advocacy. We ensure consistent enforcement of the Master Agreement, compliance with Forest Service directives, and accountability in workplace matters.</p>
+                    <p>We are committed to structured representation, clear communication, and policy-driven advocacy.</p>
+                    <div class="about-values">
+                        <div class="value-item">
+                            <div class="value-icon">⚖️</div>
+                            <h4>Structured Representation</h4>
+                        </div>
+                        <div class="value-item">
+                            <div class="value-icon">📋</div>
+                            <h4>Clear Communication</h4>
+                        </div>
+                        <div class="value-item">
+                            <div class="value-icon">📊</div>
+                            <h4>Policy-Driven Advocacy</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="section-alt">
+            <div class="section-container">
+                <div class="section-header">
+                    <h3>Representation Services</h3>
+                </div>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">🛡️</div>
+                        <div class="service-content">
+                            <h4>Disciplinary & Investigatory Matters</h4>
+                            <p>Representation in disciplinary and investigatory matters to protect your rights.</p>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">📝</div>
+                        <div class="service-content">
+                            <h4>Grievance Guidance</h4>
+                            <p>Grievance guidance and contract enforcement to ensure fair treatment.</p>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">⚙️</div>
+                        <div class="service-content">
+                            <h4>Working Condition Disputes</h4>
+                            <p>Resolution support for working condition disputes and workplace concerns.</p>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">📖</div>
+                        <div class="service-content">
+                            <h4>Policy Interpretation</h4>
+                            <p>Expert interpretation of policies, regulations, and contract provisions.</p>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🧭</div>
+                        <div class="service-content">
+                            <h4>Management Action Assistance</h4>
+                            <p>Assistance navigating management actions and administrative processes.</p>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">👥</div>
+                        <div class="service-content">
+                            <h4>District Steward Support</h4>
+                            <p>Steward support across all districts for accessible representation.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resources Section -->
+        <section id="resources">
+            <div class="section-container">
+                <div class="section-header">
+                    <h3>Employee Resources</h3>
+                </div>
+                <p class="resources-intro">These governing documents form the framework for representation and employee rights across Los Padres National Forest.</p>
+                <div class="resources-grid">
+                    <a href="https://www.fs.usda.gov/inside-fs/delivering-mission/excel/new-master-agreement-between-forest-service-and-nffe" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">📄</div>
+                        <h4>Master Agreement</h4>
+                        <p>The collective bargaining agreement between NFFE and the Forest Service.</p>
+                        <span class="resource-link">Access Document →</span>
+                    </a>
+                    <a href="https://www.fs.usda.gov/im/directives/" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">📚</div>
+                        <h4>Forest Service Directives</h4>
+                        <p>FSM and FSH directives governing Forest Service operations.</p>
+                        <span class="resource-link">Access Directives →</span>
+                    </a>
+                    <a href="https://www.usda.gov/directives/departmental-regulations" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">🏛️</div>
+                        <h4>USDA Departmental Regulations</h4>
+                        <p>Department-wide regulations and policies from USDA.</p>
+                        <span class="resource-link">Access Regulations →</span>
+                    </a>
+                    <a href="https://www.opm.gov/" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">🇺🇸</div>
+                        <h4>OPM Guidance</h4>
+                        <p>Office of Personnel Management policies and guidance.</p>
+                        <span class="resource-link">Access OPM →</span>
+                    </a>
+                    <a href="https://www.ecfr.gov" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">⚖️</div>
+                        <h4>Electronic Code of Federal Regulations</h4>
+                        <p>Complete federal regulations and statutes in effect.</p>
+                        <span class="resource-link">Access eCFR →</span>
+                    </a>
+                    <a href="https://www.nffe.org/" target="_blank" rel="noopener noreferrer" class="resource-card">
+                        <div class="resource-icon">🤝</div>
+                        <h4>NFFE National</h4>
+                        <p>National Federation of Federal Employees union resources.</p>
+                        <span class="resource-link">Visit NFFE →</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section id="contact" class="cta-section">
+            <div class="section-container">
+                <div class="section-header">
+                    <h3>Request Representation or Schedule an Appointment</h3>
+                </div>
+                <p class="cta-description">Ready to get assistance? Submit a complaint or schedule a confidential appointment with a union representative.</p>
+                <div class="cta-buttons">
+                    <a href="https://forms.gle/YPdXpK2YFntYz1SA8" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Submit Complaint / Intake Form</a>
+                    <a href="https://calendar.app.google/bxukrgfCvzEjPfTP9" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Schedule an Appointment</a>
+                </div>
+                <p class="cta-note">All submissions are confidential and handled in accordance with representational rights under federal labor law.</p>
+            </div>
+        </section>
+
+        <!-- Stewards Section -->
+        <section id="stewards" class="section-alt">
+            <div class="section-container">
+                <div class="section-header">
+                    <h3>Steward Contacts</h3>
+                </div>
+                <p class="stewards-intro">Local 1650 maintains district-level steward support to ensure forest-wide representation.</p>
+                
+                <!-- All Stewards in Grid -->
+                <div class="stewards-grid">
+                    <div class="steward-card">
+                        <span class="steward-label">Chief Steward</span>
+                        <h4>Ella Schultz</h4>
+                        <p class="location">Santa Barbara</p>
+                        <div class="contact-info">
+                            <div class="contact-item">
+                                <span>📞</span>
+                                <a href="tel:5303918119">(530) 391-8119</a>
+                            </div>
+                            <div class="contact-item">
+                                <span>✉️</span>
+                                <a href="mailto:Ella.schultz@usda.gov">Ella.schultz@usda.gov</a>
+                            </div>
+                            <div class="contact-item">
+                                <span>📧</span>
+                                <a href="mailto:ella.schultz.nffe@gmail.com">ella.schultz.nffe@gmail.com</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="steward-card">
+                        <span class="steward-label">Steward</span>
+                        <h4>Mike Alba</h4>
+                        <p class="location">Mt. Pinos</p>
+                        <div class="contact-info">
+                            <div class="contact-item">
+                                <span>📞</span>
+                                <a href="tel:6612109053">(661) 210-9053</a>
+                            </div>
+                            <div class="contact-item">
+                                <span>✉️</span>
+                                <a href="mailto:Michael.alba@usda.gov">Michael.alba@usda.gov</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="steward-card">
+                        <span class="steward-label">Steward</span>
+                        <h4>Rudy Piña</h4>
+                        <p class="location">Santa Barbara</p>
+                        <div class="contact-info">
+                            <div class="contact-item">
+                                <span>📞</span>
+                                <a href="tel:8057976892">(805) 797-6892</a>
+                            </div>
+                            <div class="contact-item">
+                                <span>✉️</span>
+                                <a href="mailto:Armando.pina@usda.gov">Armando.pina@usda.gov</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="steward-card">
+                        <span class="steward-label">Steward</span>
+                        <h4>Dago Ojeda</h4>
+                        <p class="location">Ojai</p>
+                        <div class="contact-info">
+                            <div class="contact-item">
+                                <span>📞</span>
+                                <a href="tel:8056669092">(805) 666-9092</a>
+                            </div>
+                            <div class="contact-item">
+                                <span>✉️</span>
+                                <a href="mailto:Dagoberto.ojeda@usda.gov">Dagoberto.ojeda@usda.gov</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="steward-card">
+                        <span class="steward-label">Steward</span>
+                        <h4>Maria Rosario</h4>
+                        <p class="location">Communicator</p>
+                        <div class="contact-info">
+                            <div class="contact-item">
+                                <span>📞</span>
+                                <a href="tel:8054488890">(805) 448-8890</a>
+                            </div>
+                            <div class="contact-item">
+                                <span>✉️</span>
+                                <a href="mailto:Maria.rosario@usda.gov">Maria.rosario@usda.gov</a>
+                            </div>
+                            <div class="contact-item">
+                                <span>📧</span>
+                                <a href="mailto:unioncomms1650@gmail.com">unioncomms1650@gmail.com</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="steward-card">
+                        <span class="steward-label">Steward</span>
+                        <h4>Jax Clague</h4>
+                        <p class="location">Monterey</p>
+                        <div class="contact-info">
+                            <div class="contact-item">
+                                <span>📞</span>
+                                <a href="tel:8318375160">(831) 837-5160</a>
+                            </div>
+                            <div class="contact-item">
+                                <span>✉️</span>
+                                <a href="mailto:Jax.Clague@usda.gov">Jax.Clague@usda.gov</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-container">
+                <div class="footer-main">
+                    <div class="footer-brand">
+                        <h3>NFFE Local 1650</h3>
+                        <p>Los Padres National Forest</p>
+                        <p class="footer-desc">Professional, contract-based representation for bargaining unit employees. Committed to structured advocacy and policy-driven support.</p>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Quick Links</h4>
+                        <ul class="footer-links">
+                            <li><a href="#about">About Us</a></li>
+                            <li><a href="#services">Services</a></li>
+                            <li><a href="#resources">Resources</a></li>
+                            <li><a href="#stewards">Steward Contacts</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Contact</h4>
+                        <div class="footer-contact-item">
+                            <span>✉️</span>
+                            <a href="mailto:ella.schultz.nffe@gmail.com" id="footer-email">ella.schultz.nffe@gmail.com</a>
+                        </div>
+                        <div class="footer-contact-item">
+                            <span>📞</span>
+                            <a href="tel:5303918119">(530) 391-8119</a>
+                        </div>
+                        <div class="footer-contact-item">
+                            <span>🌐</span>
+                            <a href="https://www.nffe.org/" target="_blank" rel="noopener noreferrer">NFFE National</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-divider"></div>
+                <div class="footer-bottom">
+                    <p>© 2025 NFFE Local 1650. All rights reserved.</p>
+                    <p>Affiliated with <a href="https://www.nffe.org/" target="_blank" rel="noopener noreferrer">National Federation of Federal Employees</a></p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Default configuration
+        const defaultConfig = {
+            hero_headline: 'Advocacy Across Every District. Accountability at Every Level.',
+            hero_subheadline: 'Professional forest-level representation grounded in the Master Agreement, Forest Service directives, USDA regulations, and OPM policy.',
+            about_title: 'Who We Represent',
+            footer_email: 'ella.schultz.nffe@gmail.com'
+        };
+
+        // Initialize Element SDK
+        if (window.elementSdk) {
+            window.elementSdk.init({
+                defaultConfig: defaultConfig,
+                onConfigChange: async function(config) {
+                    // Update hero headline
+                    const heroHeadline = document.getElementById('hero-headline');
+                    if (heroHeadline) {
+                        heroHeadline.textContent = config.hero_headline || defaultConfig.hero_headline;
+                    }
+
+                    // Update hero subheadline
+                    const heroSubheadline = document.getElementById('hero-subheadline');
+                    if (heroSubheadline) {
+                        heroSubheadline.textContent = config.hero_subheadline || defaultConfig.hero_subheadline;
+                    }
+
+                    // Update about title
+                    const aboutTitle = document.getElementById('about-title');
+                    if (aboutTitle) {
+                        aboutTitle.textContent = config.about_title || defaultConfig.about_title;
+                    }
+
+                    // Update footer email
+                    const footerEmail = document.getElementById('footer-email');
+                    if (footerEmail) {
+                        const email = config.footer_email || defaultConfig.footer_email;
+                        footerEmail.textContent = email;
+                        footerEmail.href = 'mailto:' + email;
+                    }
+                },
+                mapToCapabilities: function(config) {
+                    return {
+                        recolorables: [],
+                        borderables: [],
+                        fontEditable: undefined,
+                        fontSizeable: undefined
+                    };
+                },
+                mapToEditPanelValues: function(config) {
+                    return new Map([
+                        ['hero_headline', config.hero_headline || defaultConfig.hero_headline],
+                        ['hero_subheadline', config.hero_subheadline || defaultConfig.hero_subheadline],
+                        ['about_title', config.about_title || defaultConfig.about_title],
+                        ['footer_email', config.footer_email || defaultConfig.footer_email]
+                    ]);
+                }
+            });
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9cf86892e79f9c82',t:'MTc3MTM2NDA2My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
